@@ -17,11 +17,11 @@ recipesRoute.get("/", async (req, res) => {
     }
 });
 
-recipeRouter.get("/search", async (req, res) => {
+recipesRoute.get("/search", async (req, res) => {
     const { query } = req.query;
     try {
         const response = await axios.get(
-            `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&query=${query}&number=5`
+            `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&query=${query}&number=10`
         );
         const recipeData = response.data.results;
         res.status(200).json(recipeData);
