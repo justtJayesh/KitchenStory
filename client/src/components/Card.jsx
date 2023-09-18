@@ -3,14 +3,16 @@ import { Star } from "lucide-react";
 
 // eslint-disable-next-line react/prop-types
 export const Card = ({ id, image, title, readyInMinutes, healthScore }) => {
+    const userID = window.localStorage.getItem("userID");
+
     const saveRecipe = async (id) => {
         console.log(id);
-        // console.log(`http://localhost:8000/recipes/${id}`);
+
         try {
-            const response = await axios.get(
+            const response = await axios.post(
                 `http://localhost:8000/recipes/save`,
                 {
-                    params: { query: id },
+                    params: { query: id, userID },
                 }
             );
             console.log(response);
